@@ -60,7 +60,11 @@ def ask_mail():
             file_name = input("What is the file name? ")
             print()
             with open(file_name, "r") as mail:
-                return mail.read()          #gets the text from the file
+                content =  mail.read()          #gets the text from the file
+                if content.strip() == "":
+                    print("this file is empty")
+                    continue
+                return content
         except FileNotFoundError:       #handles error if file doesn't exist
             print()
             print("this is not a file bitch, make sure its in the folder")
