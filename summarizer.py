@@ -35,15 +35,20 @@ API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=API_KEY)
 
 def main():
-    print("Welcome to the email summarizer")
+    print("Welcome to the email summarizer", end="\n\n")
     while True:
+        print()
         question_input = input("Do you want to summarize an email? \"y\" (yes) \"n\" (no): ")
         if question_input.strip() == "y":
+            print()
             print(summarize_mail(ask_mail(), "You are a professional assistant. Summarize this business email in 3-5 bullet points. Focus on key information, action items, and deadlines."))
+
         elif question_input.strip() == "n":
+            print()
             print("Have a good day")
             break
         else:
+            print()
             print("enter a valid option")
             continue
         
@@ -51,10 +56,12 @@ def main():
 def ask_mail():
     while True:
         try:
+            print()
             file_name = input("What is the file name? ")
             with open(file_name, "r") as mail:
                 return mail.read()          #gets the text from the file
         except FileNotFoundError:       #handles error if file doesn't exist
+            print()
             print("this is not a file bitch, make sure its in the folder")
             continue        #continues loop
 
@@ -70,6 +77,7 @@ def summarize_mail(mail_content, prompt):
         )
         return response.text
     except Exception as e:
+        print()
         print(f"There was an error: {e}")
         return
     
