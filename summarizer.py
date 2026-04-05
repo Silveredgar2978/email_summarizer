@@ -30,10 +30,11 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-load_dotenv()
+load_dotenv()   #gets the api key in .env
 API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=API_KEY)
 
+#calls all functions, and establishes main loop
 def main():
     print("Welcome to the email summarizer", end="\n\n")
     while True:
@@ -43,16 +44,16 @@ def main():
             print()
             print(summarize_mail(ask_mail(), "You are a professional assistant. Summarize this business email in 3-5 bullet points. Focus on key information, action items, and deadlines."))
 
-        elif question_input.strip() == "n":
+        elif question_input.strip() == "n":     #if user doesn't want to summarize an email
             print()
             print("Have a good day")
             break
-        else:
+        else:                                   #if any other letter/no letter is placed
             print()
             print("enter a valid option")
             continue
         
-#asks the file and retrieves the info
+#asks for file and retrieves the information as a text
 def ask_mail():
     while True:
         try:
@@ -61,7 +62,7 @@ def ask_mail():
             print()
             with open(file_name, "r") as mail:
                 content =  mail.read()          #gets the text from the file
-                if content.strip() == "":
+                if content.strip() == "":       #checks if file is empty, and re-runs loop if empty
                     print("this file is empty")
                     continue
                 return content
@@ -71,19 +72,19 @@ def ask_mail():
             continue        #continues loop
 
 
-
+#makes the call to gemini, with the content of the mail and the prompt (instructions to summarize)
 def summarize_mail(mail_content, prompt):
     try:
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
+        response = client.models.generate_content(                  #uses free model, adds system prompt configuration
+            model="gemini-2.5-flash",                               #establishes the instructions and the gives mail content
             config=types.GenerateContentConfig(
                 system_instruction=prompt),
             contents=mail_content
         )
-        return response.text
-    except Exception as e:
+        return response.text        #returns summary to main function to print
+    except Exception as e:      #handles errors by GEMINI
         print()
-        print(f"There was an error: {e}")
-        return
+        print(f"There was an error: {e}")   #e shows the error
+        return      #returns nothing to get back to main function
     
-main()
+main()      #calls the main function
