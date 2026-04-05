@@ -42,6 +42,7 @@ def main():
             print(summarize_mail(ask_mail(), "You are a professional assistant. Summarize this business email in 3-5 bullet points. Focus on key information, action items, and deadlines."))
         elif question_input.strip() == "n":
             print("Have a good day")
+            break
         else:
             print("enter a valid option")
             continue
