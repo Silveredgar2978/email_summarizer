@@ -58,6 +58,7 @@ def ask_mail():
         try:
             print()
             file_name = input("What is the file name? ")
+            print()
             with open(file_name, "r") as mail:
                 return mail.read()          #gets the text from the file
         except FileNotFoundError:       #handles error if file doesn't exist
