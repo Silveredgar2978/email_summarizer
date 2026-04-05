@@ -1,0 +1,25 @@
+From: Carlos Mendez <carlos.mendez@techcorp.com>
+To: Sarah Johnson <sarah.johnson@techcorp.com>
+Subject: Q2 Product Launch Update — Action Required
+Date: April 4, 2026
+
+Hi Sarah,
+
+I wanted to follow up on our meeting from yesterday regarding the Q2 product launch scheduled for May 15th.
+
+After reviewing the timeline, we are currently three days behind on the UI design deliverables. I need you to coordinate with the design team and confirm by Friday whether we can recover that time or if we need to push the launch date.
+
+Additionally, the legal team has flagged two clauses in the vendor contract that need revision before we can finalize the partnership with DataSync. Please connect with legal and get their updated version by April 10th at the latest.
+
+Finally, the marketing team is waiting on the final product name before they can begin the campaign assets. We need a decision on this by end of day Monday.
+
+To summarize what I need from you:
+- Confirm launch date status by Friday April 8th
+- Get revised vendor contract from legal by April 10th
+- Send final product name decision by Monday April 7th
+
+Let me know if you have any blockers or need additional resources.
+
+Best regards,
+Carlos Mendez
+VP of Product — TechCorp

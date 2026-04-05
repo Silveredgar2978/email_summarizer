@@ -24,3 +24,52 @@
 # - Handle errors: file not found, empty file, API errors
 # - Load API key from .env
 # - Code must be clean and commented
+
+import os 
+from dotenv import load_dotenv
+from google import genai
+from google.genai import types
+
+load_dotenv()
+API_KEY = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=API_KEY)
+
+def main():
+    print("Welcome to the email summarizer")
+    while True:
+        question_input = input("Do you want to summarize an email? \"y\" (yes) \"n\" (no): ")
+        if question_input.strip() == "y":
+            print(summarize_mail(ask_mail(), "You are a professional assistant. Summarize this business email in 3-5 bullet points. Focus on key information, action items, and deadlines."))
+        elif question_input.strip() == "n":
+            print("Have a good day")
+        else:
+            print("enter a valid option")
+            continue
+        
+#asks the file and retrieves the info
+def ask_mail():
+    while True:
+        try:
+            file_name = input("What is the file name? ")
+            with open(file_name, "r") as mail:
+                return mail.read()          #gets the text from the file
+        except FileNotFoundError:       #handles error if file doesn't exist
+            print("this is not a file bitch, make sure its in the folder")
+            continue        #continues loop
+
+
+
+def summarize_mail(mail_content, prompt):
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            config=types.GenerateContentConfig(
+                system_instruction=prompt),
+            contents=mail_content
+        )
+        return response.text
+    except Exception as e:
+        print(f"There was an error: {e}")
+        return
+    
+main()
